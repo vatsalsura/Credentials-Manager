@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,5 +27,13 @@ namespace Credentials_Manager
         {
             this.InitializeComponent();
         }
-    }
+
+		private void loginButton_Click (object sender, RoutedEventArgs e)
+		{
+			if (ApplicationData.Current.RoamingSettings.Values["masterPassword"].Equals(enterPassword.Password))
+			{
+				Frame.Navigate(typeof(PasswordsPage));
+			}
+		}
+	}
 }

@@ -76,7 +76,7 @@ namespace Credentials_Manager
 
 					//clearData();
 
-					//For removing masterPassword (Only for testing purposes)
+					//For removing a single key (Only for testing purposes)
 					//roamingSettings.Values.Remove("masterPassword");
 
 					if (roamingSettings.Values["masterPassword"] != null)
@@ -99,7 +99,7 @@ namespace Credentials_Manager
 			}
 		}
 
-		//For removing masterPassword (Only for testing purposes) (Currently not working)
+		//For removing all Application Data (Only for testing purposes)
 		private static async void clearData ()
 		{
 			await ApplicationData.Current.ClearAsync();

@@ -71,17 +71,24 @@ namespace Credentials_Manager
 				if (rootFrame.Content == null)
 				{
 					// For checking if master password exists
-					ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-					StorageFolder roamingFolder = ApplicationData.Current.RoamingFolder;
+					ApplicationDataContainer LocalState = ApplicationData.Current.LocalSettings;
 
-					//clearData();
+					//ClearData();
 
 					//For removing a single key (Only for testing purposes)
-					//roamingSettings.Values.Remove("masterPassword");
+					//LocalSettings.Values.Remove("masterPassword");
 
-					if (roamingSettings.Values["masterPassword"] != null)
+					if (!(LocalState.Containers.ContainsKey("Master Password Details")))
 					{
-						// If master password exists
+						LocalState.CreateContainer("Master Password Details", ApplicationDataCreateDisposition.Always);
+
+					}
+
+					//var a = LocalState.Containers.TryGetValue("Password", out LocalState);
+
+					if (LocalState.Containers["Master Password Details"].Values["Master Password"] != null)
+					{
+						// If master password exist
 						rootFrame.Navigate(typeof(MainPage), e.Arguments);
 
 					}
@@ -100,7 +107,7 @@ namespace Credentials_Manager
 		}
 
 		//For removing all Application Data (Only for testing purposes)
-		private static async void clearData ()
+		private static async void ClearData ()
 		{
 			await ApplicationData.Current.ClearAsync();
 		}
@@ -124,6 +131,7 @@ namespace Credentials_Manager
 		/// <param name="e">Details about the suspend request.</param>
 		private void OnSuspending (object sender, SuspendingEventArgs e)
 		{
+			//clearData();
 			var deferral = e.SuspendingOperation.GetDeferral();
 			//TODO: Save application state and stop any background activity
 			deferral.Complete();

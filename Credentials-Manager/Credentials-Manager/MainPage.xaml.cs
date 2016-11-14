@@ -30,7 +30,7 @@ namespace Credentials_Manager
 
 		private void loginButton_Click (object sender, RoutedEventArgs e)
 		{
-			if (ApplicationData.Current.RoamingSettings.Values["masterPassword"].Equals(enterPassword.Password))
+			if (ApplicationData.Current.LocalSettings.Containers["Master Password Details"].Values["Master Password"].Equals(EnterPassword.Password))
 			{
 				Frame.Navigate(typeof(PasswordsPage));
 			}

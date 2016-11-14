@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Playback;
 using Windows.Security.Credentials;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -31,9 +32,9 @@ namespace Credentials_Manager
 
 		private void submitButton_Click (object sender, RoutedEventArgs e)
 		{
-			if (newPasswordBox.Password.Equals(confirmPasswordBox.Password))
+			if (NewPasswordBox.Password.Equals(ConfirmPasswordBox.Password))
 			{
-				ApplicationData.Current.RoamingSettings.Values["masterPassword"] = newPasswordBox.Password;
+				ApplicationData.Current.LocalSettings.Containers["Master Password Details"].Values["Master Password"] = NewPasswordBox.Password;
 				Frame.Navigate(typeof(MainPage));
 			}
 		}

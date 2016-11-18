@@ -78,23 +78,24 @@ namespace Credentials_Manager
 					//For removing a single key (Only for testing purposes)
 					//LocalSettings.Values.Remove("masterPassword");
 
+					//Check if the password container is created or not
 					if (!(LocalState.Containers.ContainsKey("Master Password Details")))
 					{
+						//Create the password container
 						LocalState.CreateContainer("Master Password Details", ApplicationDataCreateDisposition.Always);
 
 					}
 
-					//var a = LocalState.Containers.TryGetValue("Password", out LocalState);
-
+					//Checking if the master password is set or not
 					if (LocalState.Containers["Master Password Details"].Values["Master Password"] != null)
 					{
-						// If master password exist
-						rootFrame.Navigate(typeof(MainPage), e.Arguments);
+						// If master password exist, navigate to Login Page
+						rootFrame.Navigate(typeof(LoginPage), e.Arguments);
 
 					}
 					else
 					{
-						// If master password doesn't exist
+						// If master password doesn't exist, navigate to New Password Page
 						rootFrame.Navigate(typeof(NewPasswordPage), e.Arguments);
 					}
 					// When the navigation stack isn't restored navigate to the first page,

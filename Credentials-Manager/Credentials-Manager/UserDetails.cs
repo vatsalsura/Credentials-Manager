@@ -9,18 +9,20 @@ using System.Threading.Tasks;
 
 namespace Credentials_Manager
 {
-	[DataContract()]
+	//[DataContract()]
 	class UserDetails
 	{
-		[DataMember]
+		//[DataMember]
+		public int Index { get; set; }
+		//[DataMember]
 		public string EmailAddress { get; set; }
-		[DataMember]
+		//[DataMember]
 		public string UserName { get; set; }
-		[DataMember]
+		//[DataMember]
 		public string Password { get; set; }
-		[DataMember]
+		//[DataMember]
 		public string Website { get; set; }
-		[DataMember]
+		//[DataMember]
 		public string Notes { get; set; }
 	}
 
